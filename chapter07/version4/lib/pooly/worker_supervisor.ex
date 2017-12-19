@@ -9,7 +9,7 @@ defmodule Pooly.WorkerSupervisor do
   # Callbacks
   def init([pool_server, {m, f, a}]) do
     Process.link(pool_server)
-    # To avoid having 2 workers (from `Worker.supervisor` and `PoolServer`)
+    # To avoid having 2 workers (from `WorkerSupervisor` and `PoolServer`)
     # when single one gots killed (after checkout) we are using `temporary`
     # as a restart strategy.
     worker_opts = [restart: :temporary, timeout: 5000, function: f]
